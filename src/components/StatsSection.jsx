@@ -12,27 +12,30 @@ export default function StatsSection() {
   return (
     <section className="video-section" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <HLSVideo src="https://stream.mux.com/NcU3HlHeF7CUL86azTTzpy3Tlb00d6iF3BmCdFslMJYM.m3u8" grayscale={true} />
-      <div className="video-fade-top" style={{ height: 200 }} />
-      <div className="video-fade-bottom" style={{ height: 200 }} />
+      <div className="video-fade-top" style={{ height:200 }} />
+      <div className="video-fade-bottom" style={{ height:200 }} />
 
       <motion.div
-        className="liquid-glass video-content"
-        initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }} transition={{ duration: 0.65 }}
+        className="video-content"
+        initial={{ opacity:0, y:40 }} whileInView={{ opacity:1, y:0 }}
+        viewport={{ once:true }} transition={{ duration:0.65 }}
         style={{
-          borderRadius: 30, padding: '52px 72px',
-          display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: 48, textAlign: 'center',
+          background:'rgba(10,10,10,0.7)',
+          border:'1px solid rgba(255,255,255,0.07)',
+          backdropFilter:'blur(16px)', WebkitBackdropFilter:'blur(16px)',
+          borderRadius:28, padding:'52px 72px',
+          display:'grid', gridTemplateColumns:'repeat(4,1fr)',
+          gap:48, textAlign:'center',
         }}
       >
-        {stats.map((s, i) => (
+        {stats.map((s,i) => (
           <div key={i}>
-            <div style={{
-              fontFamily: "'Instrument Serif', serif", fontStyle: 'italic',
-              fontSize: 'clamp(2.5rem, 4.5vw, 3.8rem)',
-              letterSpacing: '-2px', lineHeight: 1, marginBottom: 10,
+            <div className="stat-value" style={{
+              fontFamily:"'Instrument Serif',serif", fontStyle:'italic',
+              fontSize:'clamp(2.5rem,4.5vw,3.8rem)',
+              letterSpacing:'-2px', lineHeight:1, marginBottom:12,
             }}>{s.value}</div>
-            <div style={{ fontWeight: 300, fontSize: 13, color: 'rgba(255,255,255,0.52)' }}>{s.label}</div>
+            <div className="kicker">{s.label}</div>
           </div>
         ))}
       </motion.div>
